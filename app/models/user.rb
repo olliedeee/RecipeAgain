@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   
+  has_many :recipes
   before_save { self.email = email.downcase }
   before_save { self.username = username.downcase }
 
