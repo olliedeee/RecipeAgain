@@ -3,7 +3,7 @@ class User < ApplicationRecord
   has_many :recipes
   has_secure_password
   
-  validates :password, presence:true, length: {minimum: 2, maximum: 120}
+  validates :password, presence:true, length: {minimum: 2, maximum: 120}, allow_nil: true
   before_save { self.email = email.downcase }
   before_save { self.username = username.downcase }
 
