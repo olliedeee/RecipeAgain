@@ -12,6 +12,9 @@ class User < ApplicationRecord
   validates :email, presence:true, length: {maximum: 130}, 
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: {case_sensitive:false}
+                    
+                      default_scope -> { order(updated_at: :desc) }
+
 
 
 end
