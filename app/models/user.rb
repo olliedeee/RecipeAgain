@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   
   has_many :recipes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
   has_secure_password
   
   validates :password, presence:true, length: {minimum: 2, maximum: 120}, allow_nil: true
