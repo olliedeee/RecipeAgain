@@ -4,8 +4,6 @@ class RecipesController < ApplicationController
   before_action :require_user, except: [:index, :show]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
-
-  
   def index
     @recipes = Recipe.paginate(page: params[:page], per_page: 5)
   end
@@ -27,7 +25,6 @@ class RecipesController < ApplicationController
   
   
   def show
-    @user_recipes = @user.recipes.paginate(page: params[:page], per_page: 5)
   end
   
   def edit
@@ -51,7 +48,7 @@ class RecipesController < ApplicationController
   
   private
   def recipe_params
-    params.require(:recipe).permit(:name, :description)
+    params.require(:recipe).permit(:name, :description, ingredient_ids: [])
   end
   
   def set_recipe

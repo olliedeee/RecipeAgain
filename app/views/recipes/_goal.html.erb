@@ -6,7 +6,7 @@
   <section> </div>
   
   <div class="col-md-8 well"> <br>
-    <h4>Recipe Name: <%= link_to recipe.name, recipes_path(recipe) %></h4><br>
+    <h4>Recipe Name: <%= link_to recipe.name, recipe_path(recipe) %></h4><br>
     <h4>Recipe Description:<%= truncate(recipe.description, length: 100) %></h4><br>
      <% if recipe.ingredients.any? %>
     <p> Categories: <%= render recipe.ingredients %> </p>
