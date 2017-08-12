@@ -1,6 +1,9 @@
 class Recipe < ApplicationRecord
   
   belongs_to :user
+  has_many :recipe_ingredients
+  has_many :ingredients, through: :recipe_ingredients
+
 
   
   validates :name, presence:true, length: {minimum: 4, maximum: 240}
