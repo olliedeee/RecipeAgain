@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   resources :recipes
   resources :users, except: [:new]
+  resources :ingredients, except: [:destroy]
   
   get "/signup", to: "users#new"
   get "/login", to: "sessions#new"

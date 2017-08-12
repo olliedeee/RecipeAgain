@@ -25,12 +25,27 @@
                   <li> <%= link_to "Placeholder link", "#" %></li> 
                   <li> <%= link_to "Placeholder link", "#" %></li> 
                   <li role="separator" class="divider"></li>
-                 <li> <%= link_to "Placeholder link", "#" %></li> 
+                  <li> <%= link_to "Placeholder link", "#" %></li> 
                   <li role="separator" class="divider"></li>
                   <li> <%= link_to "Placeholder link", "#" %></li> 
                 </ul>
               </li>
           <% end %>
+          
+           <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ingredients<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li> <%= link_to "All Ingredients", ingredients_path %></li> 
+                    <% if logged_in? && current_user.admin? %>
+                      <li role="separator" class="divider"></li>
+                      <li> <%= link_to "Create a new Ingredient", new_ingredient_path %></li> 
+                    <% end %>                  
+                  <li role="separator" class="divider"></li>
+                 <% Ingredient.all.each do |ing| %>
+                   <li> <%= link_to ing.name.capitalize, ingredient_path(ing) %>  </li> 
+                 <% end %>
+                </ul>
+            </li>
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
@@ -43,7 +58,8 @@
         <% if logged_in? %>
             <li><%=link_to "Create a recipe goal", new_recipe_path %></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.username.capitalize %>'s profile <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <%= current_user.username.capitalize %>'s <%= "(Admin)" if current_user.admin? %> Profile  <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li> <%= link_to "View your profile", user_path(current_user) %></li>     
                 <li> <%= link_to "Edit profile", edit_user_path(current_user) %></li>     

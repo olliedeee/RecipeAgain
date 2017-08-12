@@ -1,0 +1,14 @@
+<%= render 'shared/pagetitle', title: "#{@ingredient.name.capitalize}" %>
+
+<% if @ingredient.recipes.any? %>
+<div class="row">
+  <h4 align="center"> Recipes using: <%= @ingredient.name.capitalize %></h4>
+  
+  <div align ="center"> 
+  <%= will_paginate @ingredient_recipes %>
+  <%= render 'recipes/goal', obj: @ingredient.recipes %>
+  <% else %>
+    <h4 align="center"> There are no recipes using <%= @ingredient.name.capitalize %>  yet! </h4>
+  <% end %>
+  </div>
+</div>
