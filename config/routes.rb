@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   root "pages#home"
   get "pages/home", to: "pages#home"
   
-  resources :recipes
+  resources :recipes do
+    resources :comments, only: [:create]
+  end
+    
   resources :users, except: [:new]
   resources :ingredients, except: [:destroy]
   
@@ -13,6 +16,9 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   post "login", to: "sessions#create"
   get "logout", to: "sessions#destroy"
+  
+  
+  mount ActionCable.server => '/cable'
 
 
 
